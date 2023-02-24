@@ -1,11 +1,13 @@
 {
-  "name": "sprint_5",
+  "name": "api-movies",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "API para cadastro de filmes com ORM",
+  "main": "server.ts",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "dev": "ts-node-dev --ignore-watch node_modules --rs --cls src/server.ts"
   },
+  "author": "danielle-luz <daniln2209@gmail.com>",
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
