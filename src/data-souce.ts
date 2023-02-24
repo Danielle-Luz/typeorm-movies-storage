@@ -1,7 +1,7 @@
 import path from "path";
-import { DataSourceOptions } from "typeorm";
+import { DataSource, DataSourceOptions } from "typeorm";
 
-export const dataSourceConfig = ((): DataSourceOptions => {
+const dataSourceConfig = ((): DataSourceOptions => {
   const entitiesPath = path.join(__dirname, "./entities/**.{js,ts}");
   const migrationsPath = path.join(__dirname, "./migrations/**.{js,ts}");
 
@@ -26,3 +26,7 @@ export const dataSourceConfig = ((): DataSourceOptions => {
     migrations: [migrationsPath],
   };
 })();
+
+const appDataSource = new DataSource(dataSourceConfig);
+
+export { appDataSource };
