@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const moviesSchema = z.object({
+const movieCreateSchema = z.object({
   id: z.number(),
   name: z.string().max(50),
   description: z.string().optional(),
@@ -8,4 +8,4 @@ const moviesSchema = z.object({
   price: z.number().int(),
 });
 
-export { moviesSchema };
+export { movieCreateSchema };

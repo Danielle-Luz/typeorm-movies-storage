@@ -1,8 +1,7 @@
-import { type } from "os";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-class Movies {
+class Movie {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -19,4 +18,4 @@ class Movies {
   price: number;
 }
 
-export { Movies };
+export { Movie };

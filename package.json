@@ -1,11 +1,12 @@
 {
-  "name": "api-movies",
+  "name": "app-movies",
   "version": "1.0.0",
-  "description": "API para cadastro de filmes com ORM",
+  "description": "app para cadastro de filmes com ORM",
   "main": "server.ts",
   "scripts": {
     "test": "jest",
-    "dev": "ts-node-dev --ignore-watch node_modules --rs --cls src/server.ts"
+    "dev": "ts-node-dev --ignore-watch node_modules --rs --cls src/server.ts",
+    "typeorm": "typeorm-ts-node-commonjs"
   },
   "author": "danielle-luz <daniln2209@gmail.com>",
   "dependencies": {

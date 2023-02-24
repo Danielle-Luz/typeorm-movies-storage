@@ -1,6 +1,8 @@
+import { Application } from "express";
+
 const express = require("express");
-const api = express();
+const app: Application = express();
 
-api.use(express.json());
+app.use(express.json());
 
-export { api };
+export default app;
