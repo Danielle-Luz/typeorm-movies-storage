@@ -1,5 +1,5 @@
 import { api } from "./app";
-import { appDataSource } from "./data-souce";
+import { appDataSource } from "./data-source";
 
 appDataSource
   .initialize()
