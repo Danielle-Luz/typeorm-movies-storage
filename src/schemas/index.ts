@@ -1,4 +1,4 @@
-import { movieCreateSchema } from "./movie.schemas";
+import { movieCreateSchema, movieUpdateSchema } from "./movie.schemas";
 import { paginationSchema } from "./pagination.schemas";
 
-export { movieCreateSchema, paginationSchema };
+export { movieCreateSchema, movieUpdateSchema, paginationSchema };

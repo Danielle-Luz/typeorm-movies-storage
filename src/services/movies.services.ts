@@ -52,9 +52,19 @@ const getAllMoviesService = async ({
 const updateMovieService = async (updatedData: iMovieUpdate, id: number) => {
   const movieRepository: iMovieRepo = AppDataSource.getRepository(Movie);
 
-  const movieAfterUpdate = await movieRepository.save({ id, ...updatedData });
+  const updatedDataWithId = { id, ...updatedData };
 
-  return movieAfterUpdate;
+  const movieAfterUpdate = await movieRepository.save(updatedDataWithId);
+
+  return updatedDataWithId;
+};
+
+const deleteMovieService = async (id: number) => {
+  const movieRepository: iMovieRepo = AppDataSource.getRepository(Movie);
+
+  const removedMovie = await movieRepository.find({ where: { id } });
+
+  await movieRepository.remove(removedMovie);
 };
 
 const checkIfNameIsUniqueService = async (validatedName: string) => {
@@ -81,6 +91,7 @@ export {
   createMovieService,
   getAllMoviesService,
   updateMovieService,
+  deleteMovieService,
   checkIfNameIsUniqueService,
   checkIfIdExistsService,
 };

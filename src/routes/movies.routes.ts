@@ -1,25 +1,38 @@
 import { Router } from "express";
-import { createMovieController, getAllMoviesController } from "../controllers";
+import { createMovieController, getAllMoviesController, updateMovieController } from "../controllers";
 import {
+  checkIfIdExistsMiddleware,
   checkIfNameIsUniqueMiddleware,
   validateBodyMiddleware,
   validateQueryParamsMiddleware,
 } from "../middlewares";
-import { movieCreateSchema, paginationSchema } from "../schemas";
+import {
+  movieCreateSchema,
+  movieUpdateSchema,
+  paginationSchema,
+} from "../schemas";
 
 const moviesRouter = Router();
-
-moviesRouter.get(
-  "",
-  validateQueryParamsMiddleware(paginationSchema),
-  getAllMoviesController
-);
 
 moviesRouter.post(
   "",
   validateBodyMiddleware(movieCreateSchema),
   checkIfNameIsUniqueMiddleware,
   createMovieController
+);
+
+moviesRouter.patch(
+  "/:id",
+  checkIfIdExistsMiddleware,
+  validateBodyMiddleware(movieUpdateSchema),
+  checkIfNameIsUniqueMiddleware,
+  updateMovieController
+);
+
+moviesRouter.get(
+  "",
+  validateQueryParamsMiddleware(paginationSchema),
+  getAllMoviesController
 );
 
 export { moviesRouter };

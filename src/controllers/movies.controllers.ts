@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { iPagination } from "../interfaces";
 import {
   createMovieService,
+  deleteMovieService,
   getAllMoviesService,
   updateMovieService,
 } from "../services";
@@ -35,4 +36,17 @@ const updateMovieController = async (request: Request, response: Response) => {
   return response.status(200).send(movieAfterUpdate);
 };
 
-export { createMovieController, getAllMoviesController, updateMovieController };
+const deleteMovieController = async (request: Request, response: Response) => {
+  const id = parseInt(request.params.id);
+
+  await deleteMovieService(id);
+
+  return response.status(204).send();
+};
+
+export {
+  createMovieController,
+  getAllMoviesController,
+  updateMovieController,
+  deleteMovieController,
+};
