@@ -39,6 +39,7 @@ const paginationSchema = z.object({
     .string()
     .optional()
     .transform(setDefaultStringValue(["ASC", "DESC", "asc", "desc"], "ASC"))
+    .transform((value) => value.toUpperCase()),
 });
 
 export { paginationSchema };

@@ -38,7 +38,7 @@ const getAllMoviesService = async ({
   return {
     prevPage:
       (page - 1) !== 0
-        ? `http://localhost:3000/movies?page=${page}&perPage=${perPage}`
+        ? `http://localhost:3000/movies?page=${page - 1}&perPage=${perPage}`
         : null,
     nextPage:
       page <= maxPages
