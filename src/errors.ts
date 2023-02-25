@@ -12,6 +12,12 @@ class AppError extends Error {
   }
 }
 
+class RepeatedMovieName extends AppError {
+  constructor(statusCode: number, message: string) {
+    super(statusCode, message);
+  }
+}
+
 const errorHandler = (
   error: Error,
   request: Request,
@@ -30,4 +36,4 @@ const errorHandler = (
   return error ? response.status(statusCode).send(message) : next();
 };
 
-export { AppError, errorHandler };
+export { AppError, RepeatedMovieName, errorHandler };

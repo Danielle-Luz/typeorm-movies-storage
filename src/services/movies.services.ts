@@ -59,4 +59,4 @@ const checkIfNameIsUniqueService = async (validatedName: string) => {
   return nameIsNotUnique;
 };
 
-export { createMovieService, getAllMoviesService };
+export { createMovieService, getAllMoviesService, checkIfNameIsUniqueService };
