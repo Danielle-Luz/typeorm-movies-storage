@@ -23,4 +23,12 @@ const validateQueryParamsMiddleware =
     return next();
   };
 
+const checkUniqueName = (
+  request: Request,
+  response: Response,
+  next: NextFunction
+) => {
+  
+};
+
 export { validateBodyMiddleware, validateQueryParamsMiddleware };

@@ -47,4 +47,16 @@ const getAllMoviesService = async ({
   };
 };
 
+const checkIfNameIsUniqueService = async (validatedName: string) => {
+  const movieRepository = AppDataSource.getRepository(Movie);
+
+  const nameIsNotUnique = await movieRepository.exist({
+    where: {
+      name: validatedName,
+    },
+  });
+
+  return nameIsNotUnique;
+};
+
 export { createMovieService, getAllMoviesService };
