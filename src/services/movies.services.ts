@@ -1,6 +1,6 @@
 import { AppDataSource } from "../data-source";
 import { Movie } from "../entities";
-import { iMovieCreate, iMovieRepo } from "../interfaces";
+import { iMovieCreate, iMovieRepo, iMovieUpdate } from "../interfaces";
 import { iPagination } from "../interfaces";
 
 const createMovieService = async (newMovieData: iMovieCreate) => {
@@ -19,7 +19,7 @@ const getAllMoviesService = async ({
   order,
   sort,
 }: iPagination) => {
-  const movieRepository = AppDataSource.getRepository(Movie);
+  const movieRepository: iMovieRepo = AppDataSource.getRepository(Movie);
 
   const offset = perPage * (page - 1);
 
@@ -49,8 +49,16 @@ const getAllMoviesService = async ({
   };
 };
 
+const updateMovieService = async (updatedData: iMovieUpdate, id: number) => {
+  const movieRepository: iMovieRepo = AppDataSource.getRepository(Movie);
+
+  const movieAfterUpdate = await movieRepository.save({ id, ...updatedData });
+
+  return movieAfterUpdate;
+};
+
 const checkIfNameIsUniqueService = async (validatedName: string) => {
-  const movieRepository = AppDataSource.getRepository(Movie);
+  const movieRepository: iMovieRepo = AppDataSource.getRepository(Movie);
 
   const nameIsNotUnique = await movieRepository.exist({
     where: {
@@ -62,7 +70,7 @@ const checkIfNameIsUniqueService = async (validatedName: string) => {
 };
 
 const checkIfIdExistsService = async (validatedId: number) => {
-  const movieRepository = AppDataSource.getRepository(Movie);
+  const movieRepository: iMovieRepo = AppDataSource.getRepository(Movie);
 
   const idExists = movieRepository.exist({ where: { id: validatedId } });
 
@@ -72,6 +80,7 @@ const checkIfIdExistsService = async (validatedId: number) => {
 export {
   createMovieService,
   getAllMoviesService,
+  updateMovieService,
   checkIfNameIsUniqueService,
   checkIfIdExistsService,
 };

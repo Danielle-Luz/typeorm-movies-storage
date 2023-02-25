@@ -1,6 +1,7 @@
 import {
   createMovieController,
   getAllMoviesController,
+  updateMovieController,
 } from "./movies.controllers";
 
-export { createMovieController, getAllMoviesController };
+export { createMovieController, getAllMoviesController, updateMovieController };
