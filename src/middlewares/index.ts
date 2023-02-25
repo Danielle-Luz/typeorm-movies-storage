@@ -1,6 +1,11 @@
 import {
+  checkIfNameIsUniqueMiddleware,
   validateBodyMiddleware,
   validateQueryParamsMiddleware,
 } from "./movies.middlewares";
 
-export { validateBodyMiddleware, validateQueryParamsMiddleware };
+export {
+  validateBodyMiddleware,
+  validateQueryParamsMiddleware,
+  checkIfNameIsUniqueMiddleware,
+};

@@ -39,8 +39,12 @@ const checkIfNameIsUniqueMiddleware = async (
       throw new RepeatedMovieName(409, "Movie already exists.");
     }
   }
-  
+
   return next();
 };
 
-export { validateBodyMiddleware, validateQueryParamsMiddleware };
+export {
+  validateBodyMiddleware,
+  validateQueryParamsMiddleware,
+  checkIfNameIsUniqueMiddleware,
+};
