@@ -7,4 +7,10 @@ type iMovieCreate = z.infer<typeof movieCreateSchema>;
 type iMovieUpdate = DeepPartial<Movie>;
 type iMovieRepo = Repository<Movie>;
 
-export { iMovieCreate, iMovieUpdate, iMovieRepo };
+interface iPagination {
+  perPage?: number;
+  page?: number;
+  order?: "ASC" | "DESC"
+}
+
+export { iMovieCreate, iMovieUpdate, iMovieRepo, iPagination };

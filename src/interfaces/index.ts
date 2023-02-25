@@ -1,4 +1,4 @@
-import { iMovieCreate, iMovieRepo, iMovieUpdate } from './movies.interface';
+import { iMovieCreate, iMovieRepo, iMovieUpdate, iPagination } from './movies.interface';
 
 export {
   iMovieCreate,
