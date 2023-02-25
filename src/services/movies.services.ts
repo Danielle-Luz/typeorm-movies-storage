@@ -3,7 +3,7 @@ import { Movie } from "../entities";
 import { iMovieCreate, iMovieRepo } from "../interfaces";
 import { iPagination } from "../interfaces/movies.interface";
 
-export const createMovieService = async (newMovie: iMovieCreate) => {
+const createMovieService = async (newMovie: iMovieCreate) => {
   const movieRepository: iMovieRepo = AppDataSource.getRepository(Movie);
 
   const createdMovie = movieRepository.create(newMovie);
@@ -13,7 +13,7 @@ export const createMovieService = async (newMovie: iMovieCreate) => {
   return createdMovie;
 };
 
-export const getAllMoviesService = async ({ perPage, page, order }: iPagination) => {
+const getAllMoviesService = async ({ perPage, page, order }: iPagination) => {
   const movieRepository = AppDataSource.getRepository(Movie);
 
   perPage = perPage || 5;
@@ -24,9 +24,11 @@ export const getAllMoviesService = async ({ perPage, page, order }: iPagination)
     take: perPage,
     skip: perPage * page - 1,
     order: {
-      id: order
-    }
+      id: order,
+    },
   });
 
   return allFoundMovies;
 };
+
+export { createMovieService, getAllMoviesService };
