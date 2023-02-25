@@ -1,7 +1,3 @@
-import { iMovieCreate, iMovieRepo, iMovieUpdate, iPagination } from './movies.interface';
-
-export {
-  iMovieCreate,
-  iMovieUpdate,
-  iMovieRepo
-};
+import { iMovieCreate, iMovieRepo, iMovieUpdate } from "./movies.interface";
+import { iPagination } from "./pagination.interface";
+export { iMovieCreate, iMovieUpdate, iMovieRepo, iPagination };

@@ -2,14 +2,25 @@ import { NextFunction, Request, Response } from "express";
 import { ZodTypeAny } from "zod";
 
 const validateBodyMiddleware =
-  (schema: ZodTypeAny) => (req: Request, res: Response, next: NextFunction) => {
-    const { body: payload } = req;
+  (schema: ZodTypeAny) =>
+  (request: Request, response: Response, next: NextFunction) => {
+    const { body: payload } = request;
 
     const validatedBody = schema.parse(payload);
 
-    req.body = validatedBody;
+    request.body = validatedBody;
 
     return next();
   };
 
-export { validateBodyMiddleware };
+const validateQueryParamsMiddleware =
+  (schema: ZodTypeAny) =>
+  (request: Request, response: Response, next: NextFunction) => {
+    const { query } = request;
+
+    request.validParams = schema.parse(query);
+
+    return next();
+  };
+
+export { validateBodyMiddleware, validateQueryParamsMiddleware };
