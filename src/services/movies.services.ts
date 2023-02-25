@@ -54,9 +54,11 @@ const updateMovieService = async (updatedData: iMovieUpdate, id: number) => {
 
   const updatedDataWithId = { id, ...updatedData };
 
-  const movieAfterUpdate = await movieRepository.save(updatedDataWithId);
+  await movieRepository.save(updatedDataWithId);
 
-  return updatedDataWithId;
+  const movieAfterUpdate = await movieRepository.findOneBy({ id });
+
+  return movieAfterUpdate;
 };
 
 const deleteMovieService = async (id: number) => {
