@@ -25,6 +25,9 @@ const validateQueryParamsMiddleware =
 
     request.validParams = schema.parse(query);
 
+    request.validParams.order =
+      request.validParams.sort === "id" ? "ASC" : request.validParams.order;
+
     return next();
   };
 

@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z, ZodTypeAny } from "zod";
 
 const setDefaultNumberValue =
   (defaultValue: number) => (value: string | undefined) => {
