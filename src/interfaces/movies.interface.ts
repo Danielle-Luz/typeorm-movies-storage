@@ -10,7 +10,8 @@ type iMovieRepo = Repository<Movie>;
 interface iPagination {
   perPage?: number;
   page?: number;
-  order?: "ASC" | "DESC"
+  order?: "ASC" | "DESC";
+  sort?: string;
 }
 
 export { iMovieCreate, iMovieUpdate, iMovieRepo, iPagination };

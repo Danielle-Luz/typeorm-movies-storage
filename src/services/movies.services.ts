@@ -13,18 +13,19 @@ const createMovieService = async (newMovieData: iMovieCreate) => {
   return createdMovie;
 };
 
-const getAllMoviesService = async ({ perPage, page, order }: iPagination) => {
+const getAllMoviesService = async ({ perPage, page, order, sort }: iPagination) => {
   const movieRepository = AppDataSource.getRepository(Movie);
 
   perPage = perPage || 5;
   page = page || 1;
   order = order || "ASC";
+  sort = sort || "id";
 
   const allFoundMovies = await movieRepository.find({
     take: perPage,
     skip: perPage * page - 1,
     order: {
-      id: order,
+      [sort]: order,
     },
   });
 
