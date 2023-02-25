@@ -1,5 +1,10 @@
 import { Router } from "express";
-import { createMovieController, getAllMoviesController, updateMovieController } from "../controllers";
+import {
+  createMovieController,
+  deleteMovieController,
+  getAllMoviesController,
+  updateMovieController,
+} from "../controllers";
 import {
   checkIfIdExistsMiddleware,
   checkIfNameIsUniqueMiddleware,
@@ -34,5 +39,7 @@ moviesRouter.get(
   validateQueryParamsMiddleware(paginationSchema),
   getAllMoviesController
 );
+
+moviesRouter.delete("/:id", checkIfIdExistsMiddleware, deleteMovieController);
 
 export { moviesRouter };

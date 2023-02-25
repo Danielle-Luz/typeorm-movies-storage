@@ -1,10 +1,10 @@
 import { z } from "zod";
 
 const movieCreateSchema = z.object({
-  name: z.string(),
+  name: z.string().max(50),
   description: z.string().optional(),
-  duration: z.number().int(),
-  price: z.number(),
+  duration: z.number().int().positive(),
+  price: z.number().int(),
 });
 
 const movieUpdateSchema = movieCreateSchema.partial();
