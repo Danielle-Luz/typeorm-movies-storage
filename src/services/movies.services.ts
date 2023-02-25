@@ -13,7 +13,7 @@ export const createMovieService = async (newMovie: iMovieCreate) => {
   return createdMovie;
 };
 
-export const getAllMovies = async ({ perPage, page, order }: iPagination) => {
+export const getAllMoviesService = async ({ perPage, page, order }: iPagination) => {
   const movieRepository = AppDataSource.getRepository(Movie);
 
   perPage = perPage || 5;
