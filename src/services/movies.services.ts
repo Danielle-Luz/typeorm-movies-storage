@@ -33,13 +33,15 @@ const getAllMoviesService = async ({
 
   const moviesCount = await movieRepository.count();
 
+  const maxPages = moviesCount / perPage;
+
   return {
     prevPage:
-      page !== 0
+      (page - 1) !== 0
         ? `http://localhost:3000/movies?page=${page}&perPage=${perPage}`
         : null,
     nextPage:
-      offset + 1 < moviesCount
+      page <= maxPages
         ? `http://localhost:3000/movies?page=${page + 1}&perPage=${perPage}`
         : null,
     count: moviesCount,
