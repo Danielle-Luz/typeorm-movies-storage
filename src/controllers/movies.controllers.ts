@@ -15,10 +15,12 @@ const getAllMoviesController = async (request: Request, response: Response) => {
     perPage: request.validParams.perPage,
     page: request.validParams.page,
     order: request.validParams.order,
-    sort: request.validParams.sort
+    sort: request.validParams.sort,
   };
 
   const allFoundMovies = await getAllMoviesService(paginationParams);
 
   return response.status(200).send(allFoundMovies);
 };
+
+export { createMovieController, getAllMoviesController };
