@@ -1,7 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import { ZodTypeAny } from "zod";
 import { RepeatedMovieName } from "../errors";
-import { checkIfNameIsUniqueService } from "../services";
+import {
+  checkIfNameIsUniqueService,
+  checkIfIdExistsService,
+} from "../services";
 
 const validateBodyMiddleware =
   (schema: ZodTypeAny) =>
@@ -19,7 +22,7 @@ const validateQueryParamsMiddleware =
   (schema: ZodTypeAny) =>
   (request: Request, response: Response, next: NextFunction) => {
     const { query } = request;
-    
+
     request.validParams = schema.parse(query);
 
     return next();
@@ -43,8 +46,25 @@ const checkIfNameIsUniqueMiddleware = async (
   return next();
 };
 
+const checkIfIdExistsMiddleware = async (
+  request: Request,
+  response: Response,
+  next: NextFunction
+) => {
+  const validatedId = parseInt(request.params.id);
+
+  const idExists = await checkIfIdExistsService(validatedId);
+
+  if (!idExists) {
+    return response.status(404).send({ message: "Movie not found" });
+  }
+
+  return next();
+};
+
 export {
   validateBodyMiddleware,
   validateQueryParamsMiddleware,
   checkIfNameIsUniqueMiddleware,
+  checkIfIdExistsMiddleware,
 };

@@ -17,7 +17,6 @@ const getAllMoviesController = async (request: Request, response: Response) => {
     order: request.validParams.order,
     sort: request.validParams.sort,
   };
-
   const allFoundMovies = await getAllMoviesService(paginationParams);
 
   return response.status(200).send(allFoundMovies);

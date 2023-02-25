@@ -37,7 +37,7 @@ const getAllMoviesService = async ({
 
   return {
     prevPage:
-      (page - 1) !== 0
+      page - 1 !== 0
         ? `http://localhost:3000/movies?page=${page - 1}&perPage=${perPage}`
         : null,
     nextPage:
@@ -61,4 +61,17 @@ const checkIfNameIsUniqueService = async (validatedName: string) => {
   return nameIsNotUnique;
 };
 
-export { createMovieService, getAllMoviesService, checkIfNameIsUniqueService };
+const checkIfIdExistsService = async (validatedId: number) => {
+  const movieRepository = AppDataSource.getRepository(Movie);
+
+  const idExists = movieRepository.exist({ where: { id: validatedId } });
+
+  return idExists;
+};
+
+export {
+  createMovieService,
+  getAllMoviesService,
+  checkIfNameIsUniqueService,
+  checkIfIdExistsService,
+};

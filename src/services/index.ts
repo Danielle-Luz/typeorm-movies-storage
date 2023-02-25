@@ -1,3 +1,13 @@
-import { checkIfNameIsUniqueService, createMovieService, getAllMoviesService } from "./movies.services";
+import {
+  checkIfNameIsUniqueService,
+  createMovieService,
+  getAllMoviesService,
+  checkIfIdExistsService,
+} from "./movies.services";
 
-export { createMovieService, getAllMoviesService, checkIfNameIsUniqueService };
+export {
+  createMovieService,
+  getAllMoviesService,
+  checkIfNameIsUniqueService,
+  checkIfIdExistsService,
+};
