@@ -3,10 +3,10 @@ import { Movie } from "../entities";
 import { iMovieCreate, iMovieRepo } from "../interfaces";
 import { iPagination } from "../interfaces/movies.interface";
 
-const createMovieService = async (newMovie: iMovieCreate) => {
+const createMovieService = async (newMovieData: iMovieCreate) => {
   const movieRepository: iMovieRepo = AppDataSource.getRepository(Movie);
 
-  const createdMovie = movieRepository.create(newMovie);
+  const createdMovie = movieRepository.create(newMovieData);
 
   await movieRepository.save(createdMovie);
 
