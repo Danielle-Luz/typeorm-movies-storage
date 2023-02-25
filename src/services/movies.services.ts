@@ -21,7 +21,7 @@ const getAllMoviesService = async ({
 }: iPagination) => {
   const movieRepository = AppDataSource.getRepository(Movie);
 
-  const offset = perPage * page - 1;
+  const offset = perPage * page;
 
   const allFoundMovies = await movieRepository.find({
     take: perPage,
@@ -39,8 +39,8 @@ const getAllMoviesService = async ({
         ? `http://localhost:3000/movies?page=${page}&perPage=${perPage}`
         : null,
     nextPage:
-      offset < moviesCount
-        ? `http://localhost:3000/movies?page=${page}&perPage=${perPage}`
+      offset + 1 < moviesCount
+        ? `http://localhost:3000/movies?page=${page + 1}&perPage=${perPage}`
         : null,
     count: moviesCount,
     data: allFoundMovies,

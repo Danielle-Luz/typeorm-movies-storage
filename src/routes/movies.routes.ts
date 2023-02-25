@@ -5,11 +5,15 @@ import {
   validateBodyMiddleware,
   validateQueryParamsMiddleware,
 } from "../middlewares";
-import { movieCreateSchema } from "../schemas";
+import { movieCreateSchema, paginationSchema } from "../schemas";
 
 const moviesRouter = Router();
 
-moviesRouter.get("", validateQueryParamsMiddleware, getAllMoviesController);
+moviesRouter.get(
+  "",
+  validateQueryParamsMiddleware(paginationSchema),
+  getAllMoviesController
+);
 
 moviesRouter.post(
   "",
