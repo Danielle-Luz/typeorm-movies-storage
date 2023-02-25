@@ -35,7 +35,7 @@ const getAllMoviesService = async ({
 
   return {
     prevPage:
-      page !== 1
+      page !== 0
         ? `http://localhost:3000/movies?page=${page}&perPage=${perPage}`
         : null,
     nextPage:

@@ -24,16 +24,15 @@ const errorHandler = (
   response: Response,
   next: NextFunction
 ) => {
-  const message = { message: error.message };
-  let statusCode = 500;
-
   if (error instanceof AppError) {
-    statusCode = error.statusCode;
+    return response.status(error.statusCode).send({ message: error.message });
   } else if (error instanceof ZodError) {
-    statusCode = 400;
+    return response.status(400).send({ message: error.flatten().fieldErrors });
+  } else if (error) {
+    return response.status(500).send({ message: "Internal server error" });
   }
 
-  return error ? response.status(statusCode).send(message) : next();
+  return next();
 };
 
 export { AppError, RepeatedMovieName, errorHandler };

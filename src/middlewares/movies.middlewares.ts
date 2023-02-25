@@ -19,7 +19,7 @@ const validateQueryParamsMiddleware =
   (schema: ZodTypeAny) =>
   (request: Request, response: Response, next: NextFunction) => {
     const { query } = request;
-
+console.log("aaaaaaa");
     request.validParams = schema.parse(query);
 
     return next();
