@@ -21,7 +21,7 @@ const getAllMoviesService = async ({
 }: iPagination) => {
   const movieRepository = AppDataSource.getRepository(Movie);
 
-  const offset = perPage * page;
+  const offset = perPage * (page - 1);
 
   const allFoundMovies = await movieRepository.find({
     take: perPage,

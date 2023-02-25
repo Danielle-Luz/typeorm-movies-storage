@@ -1,29 +1,44 @@
 import { z } from "zod";
 
-const setDefaultValue = (defaultValue: number) => (value: string) => {
-  const valueAsNumber = Number(value);
+const setDefaultNumberValue =
+  (defaultValue: number) => (value: string | undefined) => {
+    const valueAsNumber = Number(value);
 
-  if (isNaN(valueAsNumber) || valueAsNumber < 0 || valueAsNumber % 1 !== 0) {
-    return defaultValue;
-  }
+    if (
+      isNaN(valueAsNumber) ||
+      valueAsNumber < 1 ||
+      valueAsNumber % 1 !== 0 ||
+      (defaultValue === 5 && valueAsNumber > 5)
+    ) {
+      return defaultValue;
+    }
 
-  return valueAsNumber;
-};
+    return valueAsNumber;
+  };
+
+const setDefaultStringValue =
+  (validValues: string[], defaultValue: string) =>
+  (value: string | undefined) => {
+    const isInvalidValue = !validValues.includes(String(value));
+
+    if (!value || isInvalidValue) {
+      return defaultValue;
+    }
+
+    return value;
+  };
 
 const paginationSchema = z.object({
-  perPage: z.string().transform(setDefaultValue(5)),
-  page: z.string().transform(setDefaultValue(1)),
+  perPage: z.string().optional().transform(setDefaultNumberValue(5)),
+  page: z.string().optional().transform(setDefaultNumberValue(1)),
   sort: z
-    .enum(["price", "duration"])
+    .string()
     .optional()
-    .transform((value) =>
-      value === undefined || value === null ? "id" : value
-    ),
+    .transform(setDefaultStringValue(["price", "duration"], "id")),
   order: z
-    .enum(["ASC", "DESC", "asc", "desc"])
-    .transform((value) => value.toUpperCase())
+    .string()
     .optional()
-    .default("ASC"),
+    .transform(setDefaultStringValue(["ASC", "DESC", "asc", "desc"], "ASC"))
 });
 
 export { paginationSchema };
