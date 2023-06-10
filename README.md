@@ -36,8 +36,9 @@ CRUD de filmes feito com Typescript e Express, com o uso de TypeORM para constru
 
 <h2 id="bd">Banco de dados</h2>
 
-### SGBD
-PostgreSQL
+| SGBD | MER |
+|------|-----|
+| PostgreSQL | [Diagrama MER da base de dados](movies-mer.png) |
 
 ### Especificações da tabela `movies`
 * **Nome da tabela**: movies
